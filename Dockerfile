@@ -45,7 +45,8 @@ VOLUME $CONFIG_DIRECTORY
 RUN . /opt/app-root/etc/scl_enable && \
     pip3 install --upgrade pip && \
     pip3 install --upgrade setuptools && \
-    pip3 install elastalert
+    pip3 install elastalert && \
+    pip3 install "elasticsearch>=5.0.0"
 
 # switch to elastalert
 USER 1000
