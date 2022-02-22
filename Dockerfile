@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi8/python-38
+FROM registry.access.redhat.com/rhscl/python-36-rhel7
 
 MAINTAINER Kilian Henneboehle "kilian.henneboehle@mailbox.org"
 
@@ -11,9 +11,10 @@ ENV CONFIG_DIRECTORY $ELASTALERT_HOME/config
 
 USER root
 
-RUN INSTALL_PKGS="python-devel python-setuptools net-tools" && \
+RUN INSTALL_PKGS="python3-devel python3-setuptools net-tools" && \
+    yum -y --disablerepo=* --enablerepo=rhel-7-server-rpms --enablerepo=rhel-server-rhscl-7-rpms install ${INSTALL_PKGS} && \
     yum -y update && \
-    yum -q clean all
+    yum -q clean all 
 
 RUN cd $HOME
 
