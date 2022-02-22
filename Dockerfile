@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/rhscl/python-27-rhel7
+FROM registry.access.redhat.com/ubi8/python-38
 
 MAINTAINER Kilian Henneboehle "kilian.henneboehle@mailbox.org"
 
@@ -44,7 +44,7 @@ VOLUME $CONFIG_DIRECTORY
 
 # Install workaround
 RUN . /opt/app-root/etc/scl_enable && \
-    pip install --upgrade pip
+    pip3 install elastalert
 
 # switch to elastalert
 USER 1000
