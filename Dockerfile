@@ -43,6 +43,8 @@ VOLUME $CONFIG_DIRECTORY
 
 # Install workaround
 RUN . /opt/app-root/etc/scl_enable && \
+    pip3 install --upgrade pip && \
+    pip3 install --upgrade setuptools && \
     pip3 install elastalert
 
 # switch to elastalert
