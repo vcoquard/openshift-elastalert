@@ -46,6 +46,7 @@ VOLUME $CONFIG_DIRECTORY
 RUN . /opt/app-root/etc/scl_enable && \
     pip install --upgrade pip && \
     pip install --upgrade setuptools && \
+    pip install ez_setup && \
     pip install elastalert
 
 # switch to elastalert
