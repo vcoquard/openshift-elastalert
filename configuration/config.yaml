@@ -1,48 +1,109 @@
-# This is the folder that contains the rule yaml files
-# Any .yaml file will be loaded as a rule
-rules_folder: rules
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: config-cm
+  namespace: vcdelastalert
+  selfLink: /api/v1/namespaces/vcdelastalert/configmaps/config-cm
+  uid: 304b6d5a-c7c3-4d8d-b15b-b0baf46db4d3
+  resourceVersion: '572544179'
+  creationTimestamp: '2022-02-22T15:12:17Z'
+  managedFields:
+    - manager: kubectl-create
+      operation: Update
+      apiVersion: v1
+      time: '2022-02-22T15:12:17Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:data': {}
+    - manager: Mozilla
+      operation: Update
+      apiVersion: v1
+      time: '2022-02-24T09:38:32Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:data':
+          'f:config.yaml': {}
+data:
+  config.yaml: >
+    #This is the folder that contains the rule yaml files
 
-#
-scan_subdirectories: false
+    # Any .yaml file will be loaded as a rule
 
-# How often ElastAlert will query elasticsearch
-# The unit can be anything from weeks to seconds
-run_every:
-  minutes: 1
+    rules_folder: rules
 
-# ElastAlert will buffer results from the most recent
-# period of time, in case some log sources are not in real time
-buffer_time:
-  minutes: 15
 
-# The elasticsearch hostname for metadata writeback
-# Note that every rule can have it's own elasticsearch host
-# en0 on docker host
-es_host: logging-es
+    scan_subdirectories: false
 
-# The elasticsearch port
-es_port: 9200
 
-# The index on es_host which is used for metadata storage
-# This can be a unmapped index, but it is recommended that you run
-# elastalert-create-index to set a mapping
-writeback_index: elastalert_status
+    # How often ElastAlert will query elasticsearch
 
-# If an alert fails for some reason, ElastAlert will retry
-# sending the alert until this time period has elapsed
-alert_time_limit:
-  days: 2
+    # The unit can be anything from weeks to seconds
 
-use_ssl: True
-verify_certs: True
+    run_every:
+      minutes: 1
 
-# Secrets must be mounted!
-ca_certs: /etc/curator/keys/ca
-client_cert: /etc/curator/keys/cert
-client_key: /etc/curator/keys/key
+    # ElastAlert will buffer results from the most recent
 
-# smpt settings
-email: <DESTINATION_ADDRESS>
-smpt_host: '<SMTP_HOST>'
-smtp_port: 25
-from_addr: '<SOURCE_ADDRESS>'
+    # period of time, in case some log sources are not in real time
+
+    buffer_time:
+      minutes: 15
+
+    # The elasticsearch service for metadata writeback
+
+    # Note that every rule can have it's own elasticsearch host
+
+    es_host:
+    elasticsearch-cdm-nxj4eypp.openshift-logging.clarins-cp4i-npr-cluster-ad7b8edccc7920b5debd7118b04b1074-0000.eu-de.containers.appdomain.cloud
+
+
+    # The elasticsearch port
+
+    es_port: 9200
+
+
+    # The index on es_host which is used for metadata storage
+
+    # This can be a unmapped index, but it is recommended that you run
+
+    # elastalert-create-index to set a mapping
+
+    writeback_index: elastalert_status
+
+
+    # If an alert fails for some reason, ElastAlert will retry
+
+    # sending the alert until this time period has elapsed
+
+    alert_time_limit:
+      days: 2
+
+    use_ssl: True
+
+    verify_certs: True
+
+
+    # The secrets from the curator must be mounted!
+
+    ca_certs: /etc/es/keys/admin-ca
+
+    client_cert: /etc/es/keys/admin-cert
+
+    client_key: /etc/es/keys/admin-key
+
+
+    # paste here value of command: 'oc sa get-token elastalert'
+
+    es_bearer:
+    eyJhbGciOiJSUzI1NiIsImtpZCI6InY2a29JaUwwT1hER0toRlBMcXlpbkxoLUUteEpZX2VoUEFMbW5NYnZDMkkifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJ2Y2RlbGFzdGFsZXJ0Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZWNyZXQubmFtZSI6ImVsYXN0YWxlcnQtdG9rZW4temw1dGsiLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlcnZpY2UtYWNjb3VudC5uYW1lIjoiZWxhc3RhbGVydCIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50LnVpZCI6ImVlNDMyNWU2LTQzMDYtNDFiZS05NWZhLTM2NDZiMjM2MjE2NCIsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDp2Y2RlbGFzdGFsZXJ0OmVsYXN0YWxlcnQifQ.V1U52AH5SU_CT1d59s2WuHyML_BEm2O2nhZjlLPVjYrzprkqXwm-gudwXp1-GE_3FQk8IzzNR-c2p8ilI2887h-4fo8xda2CMY0tO9TFDk9AdoT83G1Cjm2AWihmItbejHqn2sEyQBcXpKY0IlEh6MZatgTbVsAdgSUEBELx1kU0zvwvkGwddG8Nn8wIlfu7I_YqMdNCNpOMEPpQ4L1XOoEjJ2dLjB6tduyKI4DxX9kDaWqGAY_DdBxPa9IdotwkzihHWpxsldDyJWDwGatYhvV2oF3Z8zFW_p443eRxso5muCpcwzz0QK9L47uQq9gwjw5jAbHqplils7FzPF7hYw
+
+
+    # smpt settings
+
+    email: 'admin@localhost'
+
+    smpt_host: 'mailman'
+
+    smtp_port: 10025
+
+    from_addr: 'dev@localhost'
