@@ -1,30 +1,4 @@
-kind: ConfigMap
-apiVersion: v1
-metadata:
-  name: config-cm
-  namespace: vcdelastalert
-  selfLink: /api/v1/namespaces/vcdelastalert/configmaps/config-cm
-  uid: 304b6d5a-c7c3-4d8d-b15b-b0baf46db4d3
-  resourceVersion: '572544179'
-  creationTimestamp: '2022-02-22T15:12:17Z'
-  managedFields:
-    - manager: kubectl-create
-      operation: Update
-      apiVersion: v1
-      time: '2022-02-22T15:12:17Z'
-      fieldsType: FieldsV1
-      fieldsV1:
-        'f:data': {}
-    - manager: Mozilla
-      operation: Update
-      apiVersion: v1
-      time: '2022-02-24T09:38:32Z'
-      fieldsType: FieldsV1
-      fieldsV1:
-        'f:data':
-          'f:config.yaml': {}
-data:
-  config.yaml: >
+
     #This is the folder that contains the rule yaml files
 
     # Any .yaml file will be loaded as a rule
