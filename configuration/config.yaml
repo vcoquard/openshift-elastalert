@@ -28,7 +28,7 @@
     # Note that every rule can have it's own elasticsearch host
 
     es_host:
-    elasticsearch-cdm-nxj4eypp.openshift-logging.clarins-cp4i-npr-cluster-ad7b8edccc7920b5debd7118b04b1074-0000.eu-de.containers.appdomain.cloud
+    elasticsearch
 
 
     # The elasticsearch port
